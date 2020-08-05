@@ -23,7 +23,7 @@ Assists business staffers in scraping names and emails from TigerNet.
 
 2. Select a year from the dropdown.
 
-3. Select Daily Princetonian from the organization dropdown.
+3. Select Daily Princetonian from the student activity dropdown.
 
 4. Click search.
 
@@ -51,6 +51,6 @@ Assists business staffers in scraping names and emails from TigerNet.
 
 12. Click LOAD.
 
-13. Copy-Paste the 'CSV' as desired.
+13. Repeat with different pages/searches as necessary.
 
-14. Repeat with different pages/searches as necessary.
+14. Copy-Paste the 'CSV' as desired.

@@ -23,13 +23,27 @@ var gatherPages = `
 `;
 
 var parseInfo = `
+    var labelContainer = document.getElementsByClassName("imod-profile-field-label ng-binding ng-scope");
     var dataContainer = document.getElementsByClassName("imod-profile-field-data ng-binding ng-scope");
-    var name = dataContainer[0].innerHTML + " " + dataContainer[1].innerHTML;
-    var email = dataContainer[3].innerHTML;
-    if (email === null || email === "" || email.indexOf("@") === -1) {
-        email = "NONE";
+
+    var i;
+    var firstName = "NONE";
+    var lastName = "NONE";
+    var email = "NONE";
+
+    for (i = 0; i < labelContainer.length; i++) {
+        if (labelContainer[i].innerHTML === "First Name:") {
+            firstName = dataContainer[i].innerHTML;
+        }
+        if (labelContainer[i].innerHTML === "Last Name:") {
+            lastName = dataContainer[i].innerHTML;
+        }
+        if (labelContainer[i].innerHTML === "Primary Email:") {
+            email = dataContainer[i].innerHTML;
+        }
     }
-    var entry = name + "," + email;
+
+    var entry = firstName + " " + lastName + "," + email;
 
     chrome.storage.local.get(['entries'], function(result) {
         result.entries[NUMBER] = entry;
@@ -73,6 +87,7 @@ parse.onclick = function(element) {
                 tabs[i].id, {
                     code: parseInfo.replace("NUMBER", i)
                 });
+            // Simple "timer" to ensure completion.
             for (j = 0; j < 100000000; j++)
                 ;
         }

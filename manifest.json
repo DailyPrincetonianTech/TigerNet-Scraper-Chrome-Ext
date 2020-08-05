@@ -1,6 +1,6 @@
 {
     "name": "TigerNet Scraper Chrome Ext",
-    "version": "1.0",
+    "version": "2.0",
     "description": "Assists business staffers in scraping names and emails from TigerNet.",
     "permissions": [
         "activeTab",
