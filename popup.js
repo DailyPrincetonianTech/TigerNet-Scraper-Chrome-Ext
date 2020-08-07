@@ -20,6 +20,10 @@ var gatherPages = `
     chrome.storage.local.set({links: profileLinks}, function() {
         console.log('Entries saved to local storage.');
     });
+
+    chrome.storage.local.set({entries: new Array(20)}, function() {
+        console.log('Entries saved to local storage.');
+    });
 `;
 
 var parseInfo = `
