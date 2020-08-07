@@ -1,6 +1,10 @@
 # TigerNet Scraper Chrome Ext
 Assists business staffers in scraping names and emails from TigerNet.
 
+## Video Tutorial
+
+https://youtu.be/YjhhZsLJ4sc
+
 ## Installation
 
 1. Download Zip from GitHub.
