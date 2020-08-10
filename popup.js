@@ -102,7 +102,7 @@ var parseInfo = `
     }
 
     person.mailingAddress = person.streetAddress1 + ", " + person.streetAddress2 + ", " + person.city + ", " + person.state + " " + person.zip + ", " + person.country;
-    if (person.mailingAddress.indexOf("Deceased") == -1) {
+    if (person.mailingAddress.indexOf("Deceased") !== -1) {
         person.mailingAddress = "";
     }
 
