@@ -30,24 +30,94 @@ var parseInfo = `
     var labelContainer = document.getElementsByClassName("imod-profile-field-label ng-binding ng-scope");
     var dataContainer = document.getElementsByClassName("imod-profile-field-data ng-binding ng-scope");
 
-    var i;
-    var firstName = "NONE";
-    var lastName = "NONE";
-    var email = "NONE";
+    var person = {
+        firstName: "",
+        lastName: "",
+        year: "",
+        email: "",
+        streetAddress1: "",
+        streetAddress2: "",
+        city: "",
+        state: "",
+        zip: "",
+        country: "",
+        phoneNumber: "",
+        living: "",
+        employer: "",
+        jobTitle: "",
+        major: "",
+        mailingAddress: ""
+    };
 
     for (i = 0; i < labelContainer.length; i++) {
-        if (labelContainer[i].innerHTML === "First Name:") {
-            firstName = dataContainer[i].innerHTML;
-        }
-        if (labelContainer[i].innerHTML === "Last Name:") {
-            lastName = dataContainer[i].innerHTML;
-        }
-        if (labelContainer[i].innerHTML === "Primary Email:") {
-            email = dataContainer[i].innerHTML;
+        switch(labelContainer[i].innerHTML) {
+            case "First Name:":
+                person.firstName = dataContainer[i].innerHTML;
+                break;
+            case "Last Name:":
+                person.lastName = dataContainer[i].innerHTML;
+                break;
+            case "1st Degree Year:":
+                person.year = dataContainer[i].innerHTML;
+                break;
+            case "Primary Email:":
+                person.email = dataContainer[i].innerHTML;
+                break;
+            case "Address 1:":
+                person.streetAddress1 = dataContainer[i].innerHTML;
+                break;
+            case "Address 2:":
+                person.streetAddress2 = dataContainer[i].innerHTML;
+                break;
+            case "City:":
+                person.city = dataContainer[i].innerHTML;
+                break;
+            case "State / Territory / Province:":
+                person.state = dataContainer[i].innerHTML;
+                break;
+            case "Zip:":
+                person.zip = dataContainer[i].innerHTML;
+                break;
+            case "Country:":
+                person.country = dataContainer[i].innerHTML;
+                break;
+            case "Primary Phone:":
+                person.phoneNumber = dataContainer[i].innerHTML;
+                break;
+            case "Name:":
+                person.living = (dataContainer[i].innerHTML.slice(-3) === "(D)") ? "Deceased" : "Living";
+                break;
+            case "Employer:":
+                person.employer = dataContainer[i].innerHTML;
+                break;
+            case "Job Title:":
+                person.jobTitle = dataContainer[i].innerHTML;
+                break;
+            case "1st Degree Major:":
+                person.major = dataContainer[i].innerHTML;
+                break;
+            default:
+                console.log("Unused.");
         }
     }
 
-    var entry = firstName + " " + lastName + "," + email;
+    person.mailingAddress = person.streetAddress1 + ", " + person.streetAddress2 + ", " + person.city + ", " + person.state + " " + person.zip + ", " + person.country;
+    if (person.mailingAddress.indexOf("Deceased") == -1) {
+        person.mailingAddress = "";
+    }
+
+    var entry = person.firstName + "," +
+      "," +
+      person.lastName + "," +
+      person.year + "," +
+      "," +
+      person.email + "," +
+      '"' + person.mailingAddress + '"' + "," +
+      person.phoneNumber + "," +
+      person.living + "," +
+      person.employer + " " + person.jobTitle + "," +
+      person.major +
+      ",";
 
     chrome.storage.local.get(['entries'], function(result) {
         result.entries[NUMBER] = entry;
