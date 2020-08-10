@@ -108,6 +108,7 @@ var parseInfo = `
 
     var entry = person.firstName + "," +
       "," +
+      "," +
       person.lastName + "," +
       person.year + "," +
       "," +
